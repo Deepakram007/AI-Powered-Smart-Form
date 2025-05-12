@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Powered SmartForm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2 class="form-heading">AI Powered SmartForm</h2>
+
+        <form id="smartForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            <span class="error" id="nameError"></span>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <span class="error" id="emailError"></span>
+
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+            <span class="error" id="phoneError"></span>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <button type="button" class="autofill-btn" onclick="autofillForm()">Autofill Form</button>
+
+        <p class="info">
+            By filling out this form, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

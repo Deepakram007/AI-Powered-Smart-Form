@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2 class="form-heading">Form Submission Results</h2>
+
+        <div id="userRecords">
+            <!-- Data will be inserted here dynamically -->
+        </div>
+
+        <div class="buttons">
+            <button onclick="clearLastRecord()">Clear Last Record</button>
+            <button onclick="deleteAllRecords()">Delete All Records</button>
+        </div>
+
+        <a href="index.html" class="back-btn">Go Back to Form</a>
+    </div>
+
+    <script>
+        // Retrieve the stored records from localStorage
+        const records = JSON.parse(localStorage.getItem('userRecords')) || [];
+
+        const recordsContainer = document.getElementById('userRecords');
+
+        // Function to display all the stored records
+        function displayRecords() {
+            recordsContainer.innerHTML = '';
+            if (records.length > 0) {
+                // Loop through all records and display them
+                records.forEach((record, index) => {
+                    recordsContainer.innerHTML += `
+                        <div class="record">
+                            <p><strong>Full Name:</strong> ${record.name}</p>
+                            <p><strong>Email:</strong> ${record.email}</p>
+                            <p><strong>Phone Number:</strong> ${record.phone}</p>
+                        </div>
+                    `;
+                });
+            } else {
+                recordsContainer.innerHTML = "<p>No records available.</p>";
+            }
+        }
+
+        // Display records on page load
+        displayRecords();
+
+        // Function to clear the last record
+        function clearLastRecord() {
+            if (records.length > 0) {
+                // Remove the last record from the array
+                records.pop();
+                // Save the updated records array back to localStorage
+                localStorage.setItem('userRecords', JSON.stringify(records));
+                // Re-display the records after deletion
+                displayRecords();
+            } else {
+                alert('No records to delete!');
+            }
+        }
+
+        
+        function deleteAllRecords() {
+        
+            localStorage.removeItem('userRecords');
+            // Re-initialize the records array as empty
+            records.length = 0;
+            // Re-display the records after deletion
+            displayRecords();
+        }
+    </script>
+</body>
+</html>
